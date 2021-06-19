@@ -9,7 +9,7 @@
           <% if(items.length > 0) { %>
           <% items.forEach(item => { %>
               <li class="collection-item">
-                <div> <%= item.name %> $<%= item.price %>
+                <div> <a href="./item/<%= item.id %>"><%= item.name %> $<%= item.price %></a>
                   <a href="#!" class="secondary-content">
                     <i class="material-icons">delete</i>
                     <i class="material-icons">edit</i>

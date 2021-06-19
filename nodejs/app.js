@@ -35,6 +35,16 @@ app.get('/add-item', (req, res) => {
   res.render('add-item')
 });
 
+app.get('/item/:id', (req, res) => {
+  const id = req.params.id;
+  Item.findById(id)
+    .then(resultado => {
+      console.log(resultado);
+      res.render('item-detail', {item: resultado});
+    })
+    .catch(err => console.log(err));
+})
+
 // Se usa para cuando el request no coincide con ningún endpoint existente
 // Tiene que ir abajo de todo porque si no se come el request
 app.use((req, res) => {
