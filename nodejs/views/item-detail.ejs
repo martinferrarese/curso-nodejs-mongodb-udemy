@@ -7,6 +7,22 @@
         <h3>Detalles del ítem</h3>
         <h4>Nombre: <%= item.name %> </h4>
         <h4>Precio: $<%= item.price %> </h4>
+        <a id="btnDelete" class="waves-effect waves-light btn" data-id="<%=item._id%>" href="">BORRAR</a>
     </div>
   </body>
+  <script>
+      btnDelete.onclick = (e) => {
+        e.preventDefault();
+        const id = btnDelete.dataset.id;
+        console.log(id);
+        const endpoint = `/delete-item/${id}`;
+        fetch(endpoint, {
+            method: 'DELETE'
+        }).then(res => res.json())
+        .then(data => {
+            console.log(data);
+            window.location.href = data.redirect})
+        .catch(err => console.log(err))
+      }
+  </script>
 </html>

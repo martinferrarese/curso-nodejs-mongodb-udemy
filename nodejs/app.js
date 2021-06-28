@@ -39,8 +39,17 @@ app.get('/item/:id', (req, res) => {
   const id = req.params.id;
   Item.findById(id)
     .then(resultado => {
-      console.log(resultado);
       res.render('item-detail', {item: resultado});
+    })
+    .catch(err => console.log(err));
+})
+
+app.delete('/delete-item/:id', (req, res) => {
+  const id = req.params.id;
+  Item.findByIdAndDelete(id)
+    .then(resultado => {
+      console.log("FFA");
+      res.json({redirect: '/'})
     })
     .catch(err => console.log(err));
 })
