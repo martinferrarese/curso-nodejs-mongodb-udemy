@@ -11,16 +11,30 @@
               <li class="collection-item">
                 <div> <a href="./item/<%= item.id %>"><%= item.name %> $<%= item.price %></a>
                   <a href="#!" class="secondary-content">
-                    <i class="material-icons">delete</i>
+                    <i id="btnEliminar" onclick="eliminar()" data-id="<%=item._id%>" class="material-icons">delete</i>
                     <i class="material-icons">edit</i>
                   </a>
                 </div>
               </li>
           <%})%>
           <% }else{ %>
-            <li>No hay nada por acá...</li>
+            <li class="collection-item">No hay nada por acá...</li>
           <%}%>
         </ul>
     </div>
+    <script>
+      function eliminar() {
+        console.log("Entré");
+        const id = btnEliminar.dataset.id;
+        const endpoint = `/delete-item/${id}`;
+        fetch(endpoint, {
+            method: 'DELETE'
+        }).then(res => res.json())
+        .then(data => {
+            console.log(data);
+            window.location.href = data.redirect})
+        .catch(err => console.log(err))
+      }
+    </script>
   </body>
 </html>
