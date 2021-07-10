@@ -14,7 +14,6 @@
       btnDelete.onclick = (e) => {
         e.preventDefault();
         const id = btnDelete.dataset.id;
-        console.log(id);
         const endpoint = `/delete-item/${id}`;
         fetch(endpoint, {
             method: 'DELETE'
